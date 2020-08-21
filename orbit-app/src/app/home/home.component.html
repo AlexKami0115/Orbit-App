@@ -1,0 +1,20 @@
+
+<div *ngIf="planet">
+	<!-- planet orbit starts -->
+	<div id="planet-orbit"
+		[ngStyle]="{'-webkit-animation': 'orbit-start ' + planet.orbitSpeed + 's linear infinite', '-webkit-animation-play-state': planet.state}">
+
+		<!-- planet spin adjusted-->
+		<div id="planet"
+			[ngStyle]="{'-webkit-animation': 'orbit-no-spin ' + planet.orbitSpeed + 's linear infinite', '-webkit-animation-play-state': planet.state}">
+
+			<!-- image set and size is adjusted according to the radius -->
+			<img [src]=planet.filePath id="plimage" [attr.height]=planet.radius*2
+				[ngStyle]="{'-webkit-animation': 'planet-spin ' + planet.spinSpeed + 's linear infinite', 
+                          '-webkit-animation-play-state': planet.state,
+                          'width': 'auto'}">
+		</div>
+
+	</div>
+
+</div>

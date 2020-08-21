@@ -1,0 +1,140 @@
+/* Sun is set as background image, centered on the html body.*/
+html, body {
+	width: 100%;
+	height: 100%;
+	background: url(assets/images/sun.png) center center no-repeat;
+	background-size: 300px;
+}
+
+/* margin used for a wider rotation around sun*/
+#planet {
+	position: absolute;
+	margin-top: -450px;
+}
+
+/* center which planet will orbit set with top, left, transform origin */
+#planet-orbit {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform-origin: center center;
+}
+
+/* orbit initialized by rotating object 360 degrees */
+@-webkit-keyframes orbit-start { 100% {
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+}
+
+}
+@keyframes orbit-start { 100% {
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+}
+
+}
+
+/* orbit-no-spin allows the planet to orbit without the unwanted spin speed caused by orbit-start. */
+@-webkit-keyframes orbit-no-spin { 100% {
+	-webkit-transform: rotate(-360deg);
+	-moz-transform: rotate(-360deg);
+}
+
+}
+@keyframes orbit-no-spin { 100% {
+	-webkit-transform: rotate(-360deg);
+	-moz-transform: rotate(-360deg);
+}
+
+}
+
+/* spin added here */
+@-webkit-keyframes planet-spin { 100% {
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+}
+
+}
+@keyframes planet-spin { 100% {
+	-webkit-transform: rotate(360deg);
+	-moz-transform: rotate(360deg);
+}
+
+}
+
+/* SIDEBAR  */
+.wrapper {
+	padding-left: 2.5%;
+}
+
+#sidebar {
+	min-width: 250px;
+	max-width: 250px;
+	height: 100%;
+	min-height: 60vh;
+	background: #343a40;
+	color: #fff;
+	transition: all 0.3s;
+	font-family: TT Wellington;
+	border-radius: 10px;
+	border-radius: 10px;
+	text-align: center;
+	font-size: 20px;
+}
+
+#sidebar .sidebar-header {
+	padding: 10px;
+	background: #4e555c;
+	border-radius: 10px;
+	margin-bottom: 15px;
+	font-size: 40px;
+}
+
+.sidebar-header h3 {
+	font-size: 45px;
+}
+
+#sidebar.active {
+	margin-left: -550px;
+}
+
+/* move sidebar out of view */
+.sidebarToggle {
+	padding-top: 30px;
+	padding-bottom: 40px;
+	margin-left: -45px;
+}
+
+#spinSpeed, #orbitSpeed {
+	width: 60%;
+}
+
+.form-orbit, .form-spin, .start-stop {
+	padding-bottom: 30px;
+}
+
+.btn {
+	margin-top: 10px;
+}
+
+.start-stop .btn, .rand-planet .btn {
+	width: 130px;
+	font-size: 17px;
+}
+
+@media ( max-width : 768px) {
+	#sidebar {
+		margin-left: -250px;
+	}
+	#sidebar.active {
+		margin-left: 0;
+	}
+}
+
+/* used for error message */
+.failed {
+	border-radius: 5px;
+	color: red;
+	font-size: 17px;
+	font-weight: bold;
+}

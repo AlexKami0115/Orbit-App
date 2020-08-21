@@ -1,0 +1,80 @@
+<!-- used to show/hide the sidebar-->
+<div class=sidebarToggle>
+	<button type="button" id="sidebarCollapse" class="btn btn-secondary">
+		<fa-icon [icon]="faAlignLeft"></fa-icon>
+		&nbsp;Toggle Controls
+	</button>
+</div>
+
+<div>
+	<nav id="sidebar">
+		<div class="sidebar-header">
+			<h3>{{this.planet.name}}</h3>
+		</div>
+		<ul id="nav-sidebar" class="list-group">
+			<li>
+				<!-- Orbit Speed-->
+				<form class="form-orbit" #oform="ngForm" novalidate>
+					<div class="list-group">
+
+						<!-- Field validation using custom directive, SpeedValidatorDirective -->
+						<div
+							*ngIf="speed.errors && (speed.dirty || speed.touched); else noError">
+							<label *ngIf="speed.errors.speedInvalid; else noError"
+								class="failed"> Speed must be between 0 - 200 </label>
+						</div>
+						<ng-template #noError> <label>Orbit Speed:
+							{{this.planet.orbitSpeed*10}} <small> r/.16sec</small>
+						</label> </ng-template>
+
+						<input type="number" #speed="ngModel" name="speed"
+							[(ngModel)]="orbit_speed" id="orbitSpeed"
+							class="form-control mx-sm-5" required speedInvalid>
+
+					</div>
+					<button [disabled]="oform.invalid" class="btn btn-primary"
+						(click)="setOrbitSpeed()" type="button">Apply</button>
+				</form> <!-- Spin Speed-->
+				<form class="form-spin" #sform="ngForm" novalidate>
+					<div class="list-group">
+
+						<!-- Field validation using custom directive, SpeedValidatorDirective -->
+						<div
+							*ngIf="speed2.errors && (speed2.dirty || speed2.touched); else noErr">
+							<label *ngIf="speed2.errors.speedInvalid; else noErr"
+								class="failed"> Speed must be between 0 - 200 </label>
+						</div>
+						<ng-template #noErr> <label>Spin Speed:
+							{{this.planet.spinSpeed*10}} <small> r/.16sec</small>
+						</label> </ng-template>
+
+						<input type="number" #speed2="ngModel" name="speed"
+							[(ngModel)]="spin_speed" id="spinSpeed"
+							class="form-control mx-sm-5" required speedInvalid>
+
+					</div>
+					<button [disabled]="sform.invalid" class="btn btn-primary"
+						(click)="setSpinSpeed()" type="button">Apply</button>
+				</form> <!-- Start/Stop -->
+				<div class="start-stop">
+					<ng-container *ngIf="!motion">
+					<button class="btn btn-success" (click)="toggleMotion()"
+						type="button">Start</button>
+					</ng-container>
+
+					<ng-container *ngIf="motion">
+					<button class="btn btn-danger" (click)="toggleMotion()"
+						type="button">Stop</button>
+					</ng-container>
+				</div> <!-- Get Random Planet-->
+				<div class="rand-planet">
+					<button class="btn btn-info" (click)="getRandomPlanet()"
+						type="submit">Random planet</button>
+				</div>
+			</li>
+		</ul>
+	</nav>
+
+	<!-- binding planet in sidebar component to @Input() planet in home component. -->
+	<app-home [planet]="planet"></app-home>
+</div>
